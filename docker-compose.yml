@@ -1,0 +1,30 @@
+# Arsch-Server für koem2.mooo.com:2284
+#
+#   docker compose up -d          bauen (falls nötig) und starten
+#   docker compose logs -f        Log ansehen
+#   docker compose down           stoppen (Spielstände bleiben im Volume arsch-data)
+#
+# Im Router: Portfreigabe TCP 2284 -> dieser Rechner, Port 2284.
+services:
+  arsch-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    image: arsch-server:latest
+    container_name: arsch-server
+    restart: unless-stopped
+    ports:
+      - "2284:2284"
+    volumes:
+      - arsch-data:/data
+    environment:
+      PORT: "2284"
+      # Optional verschlüsselt (wss://): Zertifikat + Schlüssel (PEM) einbinden, z.B.
+      #   volumes: - /etc/letsencrypt:/etc/letsencrypt:ro
+      # TLS_CERT: /etc/letsencrypt/live/koem2.mooo.com/fullchain.pem
+      # TLS_KEY: /etc/letsencrypt/live/koem2.mooo.com/privkey.pem
+    # docker stop schickt SIGTERM – der Server speichert dann noch einmal.
+    stop_grace_period: 10s
+
+volumes:
+  arsch-data:

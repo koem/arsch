@@ -1,0 +1,3 @@
+# Jede Testdatei startet eigene Server-Prozesse; nacheinander laufen lassen,
+# damit sich die (zeitkritischen) Tests nicht gegenseitig ausbremsen.
+concurrency: 1

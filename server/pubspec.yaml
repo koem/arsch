@@ -1,0 +1,13 @@
+name: arsch_server
+description: WebSocket-Spielserver fuer das Kartenspiel "Arsch".
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  arsch_shared:
+    path: ../shared
+dev_dependencies:
+  test: ^1.33.0

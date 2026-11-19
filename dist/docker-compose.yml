@@ -1,0 +1,13 @@
+# Arsch-Server auf der Box (Image vorher mit "docker load" geladen, siehe INSTALL.md)
+services:
+  arsch-server:
+    image: arsch-server:latest
+    container_name: arsch-server
+    restart: unless-stopped
+    ports:
+      - "2284:2284"
+    volumes:
+      - arsch-data:/data
+    stop_grace_period: 10s
+volumes:
+  arsch-data:

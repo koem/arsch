@@ -1,0 +1,43 @@
+name: arsch
+description: Das Kartenspiel "Arsch" fuer 4 oder 5 Spieler.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  web_socket_channel: ^3.0.0
+  shared_preferences: ^2.2.0
+  arsch_shared:
+    path: ../shared
+  material_ui: ^1.11.1
+  app_links: ^7.2.2
+  share_plus: ^13.3.1
+  flutter_local_notifications: ^23.0.3
+  timezone: ^0.11.2
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
+
+# App-Icon aus dem Logo erzeugen:  dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon_full.png"
+  adaptive_icon_background: "#0F3D24"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"
+  # Das Logo ist im Bild schon passend verkleinert (60 Prozent), kein zusätzlicher Rand.
+  adaptive_icon_foreground_inset: 0
+  remove_alpha_ios: true
+  min_sdk_android: 24

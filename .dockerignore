@@ -1,0 +1,6 @@
+# Nur shared/ und server/ werden fürs Server-Image gebraucht.
+app/
+**/.dart_tool/
+**/build/
+server/data/
+*.md

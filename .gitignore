@@ -1,0 +1,65 @@
+# Arsch – was nicht versioniert werden muss.
+# Die Flutter-App hat zusätzlich eigene Regeln in app/.gitignore,
+# app/android/.gitignore und app/ios/.gitignore (von "flutter create").
+
+# --- Dart / Pub ---------------------------------------------------------
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+build/
+coverage/
+doc/api/
+
+# Lock-Datei nur für Anwendungen (app/, server/) versionieren; shared/ ist ein
+# Paket, das über einen Pfad eingebunden wird.
+shared/pubspec.lock
+
+# --- Build-Ergebnisse zum Weitergeben ----------------------------------
+# APK und Docker-Image lassen sich jederzeit neu bauen (siehe README.md).
+# INSTALL.md und docker-compose.yml in dist/ bleiben versioniert.
+dist/*.apk
+dist/*.aab
+dist/*.tar
+dist/*.tar.gz
+
+# --- Laufzeitdaten des Servers -----------------------------------------
+# Spielstände (DATA_DIR, Standard ./data) – enthalten Sitzungs-Tokens der Spieler.
+data/
+server/data/
+rooms.json
+rooms.json.tmp
+rooms.json.broken-*
+
+# --- Geheimnisse -------------------------------------------------------
+# TLS-Zertifikate/-Schlüssel und Signierschlüssel nie einchecken.
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.keystore
+key.properties
+.env
+.env.*
+
+# --- Editoren / IDEs ---------------------------------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+*.swp
+*~
+
+# --- Betriebssysteme ---------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Lokale Einstellungen für Claude Code ------------------------------
+.claude/settings.local.json
+
+# --- Logs --------------------------------------------------------------
+*.log

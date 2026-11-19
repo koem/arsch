@@ -1,0 +1,20 @@
+# Bauen (im Hauptordner "arsch"):  docker build -f Dockerfile.server -t arsch-server .
+# Starten:                          docker compose up -d   (siehe docker-compose.yml)
+#   oder von Hand:                  docker run -d -p 2284:2284 -v arsch-data:/data --restart unless-stopped arsch-server
+#   Das Volume arsch-data hält den Spielstand (rooms.json), damit laufende Spiele
+#   einen Neustart oder ein Update des Containers überstehen.
+FROM dart:stable AS build
+WORKDIR /src
+COPY shared/ shared/
+COPY server/ server/
+WORKDIR /src/server
+RUN dart pub get && dart compile exe bin/server.dart -o /arsch-server
+
+FROM scratch
+COPY --from=build /runtime/ /
+COPY --from=build /arsch-server /arsch-server
+ENV DATA_DIR=/data
+ENV PORT=2284
+VOLUME /data
+EXPOSE 2284
+CMD ["/arsch-server"]
